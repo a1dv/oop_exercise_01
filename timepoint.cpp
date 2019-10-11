@@ -56,5 +56,5 @@
             }
         }
         void TimePoint::printing () {
-            std::cout << "Результат:\n" << moment.hours  << " часов " << moment.min << " минут " << moment.sec << " секунд ";
+            std::cout << "Результат:\n" << this->hours  << " часов " << this->min << " минут " << this->sec << " секунд ";
         }
