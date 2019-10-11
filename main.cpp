@@ -47,8 +47,8 @@ int main()
         std::cout << "Введите количество секунд: ";
         std::cin >> addsec;
         res.secadding(addsec);
-        res.difference(moment);
-        res.printing();
+        moment.difference(res);
+        moment.printing();
     }
     if (npt == "5") {
         std::cout << "Ввод осуществляется в формате час:минута:секунда\nВведите первый момент времени: ";
@@ -58,16 +58,14 @@ int main()
         std::cout << "Введите второй момент времени: ";
         TimePoint second;
         std::cin >> second.hours >> tmp >> second.min >> tmp >> second.sec;
-        long long a = 0;
-        long long b = 0;
-        a = first.trans_to_sec();
-        b = second.trans_to_sec();
-        if ((a / b) > 0) {
-            answ = double(a) / double(b);
+        first.trans_to_sec();
+        second.trans_to_sec();
+        if ((first.sec / second.sec) > 0) {
+            answ = double(first.sec) / double(second.sec);
             std::cout << "Первый момент больше второго в " << answ << " раз\n";
         }
         else {
-          answ = double(b) / double(a);
+          answ = double(second.sec) / double(first.sec);
           std::cout << "Первый момент меньше второго в " << answ << " раз\n";
         }
     }
@@ -79,17 +77,15 @@ int main()
         std::cout << "Введите второй момент времени: ";
         TimePoint second;
         std::cin >> second.hours >> tmp >> second.min >> tmp >> second.sec;
-        long long a = 0;
-        long long b = 0;
-        a = first.trans_to_sec();
-        b = second.trans_to_sec();
-        if (a > b) {
+        first.trans_to_sec();
+        second.trans_to_sec();
+        if (first.sec > second.sec) {
             std::cout << "Первый момент времени больше второго";
         }
-        if (a < b) {
+        else if (second.sec > first.sec) {
             std::cout << "Второй момент времени больше первого";
         }
-        if (a == b) {
+        else {
             std::cout << "Они равны";
         }
 
