@@ -3,17 +3,17 @@
 class TimePoint
 {
     public:
-        int hours;
-        int min;
-        int sec;
+        long long hours;
+        long long min;
+        long long sec;
 
         TimePoint summaring(TimePoint second);
 
         TimePoint difference(TimePoint second);
 
-        TimePoint secadding(int addsec);
+        TimePoint secadding(long long addsec);
 
-        TimePoint minadding(int addmin);
+        TimePoint minadding(long long addmin);
 
         long long trans_to_sec();
 

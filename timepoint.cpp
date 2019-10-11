@@ -27,16 +27,14 @@
             this->hours -= second.hours;
             this->hours = abs(this->hours);
         }
-        TimePoint TimePoint::secadding(int addsec)
+        TimePoint TimePoint::secadding(long long addsec)
         {
-            this->hours = 0, this->min = 0, this->sec = 0;
-            this->sec = addsec % 60;
-            this->min = (addsec / 60) % 60;
-            this->hours = addsec / 3600;
+            this->sec += addsec % 60;
+            this->min += (addsec / 60) % 60;
+            this->hours += addsec / 3600;
         }
-        TimePoint TimePoint::minadding(int addmin)
+        TimePoint TimePoint::minadding(long long addmin)
         {
-            this->hours = 0, this->min = 0, this->sec = 0;
             if ((addmin / 60) > 1) {
                 this->min = addmin % 60;
                 this->hours = addmin / 60;
@@ -48,12 +46,14 @@
         long long TimePoint::trans_to_sec() {
             this->min = (this->hours * 60) + this->min;
             this->sec = (this->min * 60) + this->sec;
+            return this->sec;
         }
         long long TimePoint::trans_to_min() {
             this->min = (this->hours * 60) + this->min;
             if (this->sec >= 30) {
                 this->min += 1;
             }
+            return this -> min;
         }
         void TimePoint::printing () {
             std::cout << "Результат:\n" << this->hours  << " часов " << this->min << " минут " << this->sec << " секунд ";
