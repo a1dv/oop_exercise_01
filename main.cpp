@@ -56,7 +56,7 @@ int main()
         std::cout << "Введите второй момент времени: ";
         TimePoint second;
         std::cin >> second.hours >> tmp >> second.min >> tmp >> second.sec;
-        if (first.compare(second, &answ) && answ != 1) {
+        if (first.compare(second, &answ) && (answ != 1)) {
             std::cout << "Первый момент больше второго в " << answ << " раз\n";
         }
         else if (answ == 1) {
@@ -75,7 +75,7 @@ int main()
         TimePoint second;
         double answ = 0;
         std::cin >> second.hours >> tmp >> second.min >> tmp >> second.sec;
-        if (first.compare(second, &answ) && answ != 1) {
+        if (first.compare(second, &answ) && (answ != 1)) {
             std::cout << "Первый момент больше второго\n";
         }
         else if (answ == 1) {
