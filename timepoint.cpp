@@ -32,16 +32,47 @@
             this->sec += addsec % 60;
             this->min += (addsec / 60) % 60;
             this->hours += addsec / 3600;
+            if (this->sec >= 60) {
+                this->sec = this->sec % 60;
+                this->min += 1;
+            }
+            if (this->min >= 60) {
+                this->min = this->min % 60;
+                this->hours += 1;
+            }
+            this->hours = this->hours % 24;
+        }
+        TimePoint TimePoint::secdiff(long long diffsec)
+        {
+            this->sec -= diffsec;
+            if (this->sec < 0) {
+                this->min -= 1;
+                this->min -= diffsec / 60;
+                this->sec = this->sec % 60 + 60;
+            }
+            if (this->min < 0) {
+                this->hours -= diffsec / 3600;
+                this->min = this->min % 60 + 60;
+            }
+            this->sec = this->sec % 60;
+            this->min = this->min % 60;
+            this->hours = abs(this->hours % 24);
         }
         TimePoint TimePoint::minadding(long long addmin)
         {
-            if ((addmin / 60) > 1) {
-                this->min = addmin % 60;
-                this->hours = addmin / 60;
+            this->min += addmin % 60;
+            this->hours += addmin / 60;
+            if (this->min >= 60) {
+                this->min = this->min % 60;
+                this->hours += 1;
             }
-            else {
-                this->sec = addmin;
-            }
+            this->hours = this->hours % 24;
+        }
+        bool TimePoint::compare(TimePoint moment, double* answ) {
+            long long a = this->trans_to_sec();
+            long long b = moment.trans_to_sec();
+            *answ = double(a) / double(b);
+            return a > b;
         }
         long long TimePoint::trans_to_sec() {
             this->min = (this->hours * 60) + this->min;
@@ -56,5 +87,5 @@
             return this -> min;
         }
         void TimePoint::printing () {
-            std::cout << "Результат:\n" << this->hours  << " часов " << this->min << " минут " << this->sec << " секунд ";
+            std::cout << "Результат:\n" << this->hours  << " часов " << this->min << " минут " << this->sec << " секунд\n";
         }
