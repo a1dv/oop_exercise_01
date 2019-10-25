@@ -7,17 +7,17 @@ class TimePoint
         long long min;
         long long sec;
 
-        TimePoint summaring(TimePoint second);
+        void summaring(TimePoint second);
 
-        TimePoint difference(TimePoint second);
+        void difference(TimePoint second);
 
         bool compare(TimePoint moment, double* answ);
 
-        TimePoint secadding(long long addsec);
+        void secadding(long long addsec);
 
-        TimePoint secdiff(long long diffsec);
+        void secdiff(long long diffsec);
 
-        TimePoint minadding(long long addmin);
+        void minadding(long long addmin);
 
         long long trans_to_sec();
 
