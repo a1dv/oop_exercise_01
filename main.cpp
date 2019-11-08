@@ -116,4 +116,33 @@ int main()
         res.minadding(addmin);
         res.printing();
     }
+    if (npt == "11") {
+        TimePoint first;
+        TimePoint second;
+        long long addsec;
+        std::cin >> first.hours >> tmp >> first.min >> tmp >> first.sec;
+        std::cin >> second.hours >> tmp >> second.min >> tmp >> second.sec;
+        std::cin >> addsec;
+        res = first;
+        res.difference(second);
+        res.printing();
+        res = first;
+        res.summaring(second);
+        res.printing();
+        res = first;
+        res.secadding(addsec);
+        res.printing();
+        res = first;
+        res.secdiff(addsec);
+        res.printing();
+        res = first;
+        res.minadding(addsec);
+        res.printing();
+        res = first;
+        std::cout << res.trans_to_min() << "\n";
+        res = first;
+        std::cout << res.trans_to_sec() << "\n";
+        res = first;
+        std::cout << res.trans_to_min() << "\n";
+    }
 }
