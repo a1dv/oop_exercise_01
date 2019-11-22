@@ -14,18 +14,20 @@
 
         void TimePoint::difference(TimePoint second)
         {
+            this->hours -= second.hours;
+            if (this->hours < 0) {
+                this->hours += 24;
+            }
+            this->min -= second.min;
+            if (this->min < 0) {
+                this->hours -=1;
+                this->min += 60;
+            }
             this->sec -= second.sec;
             if (this->sec < 0) {
                 this->min -= 1;
                 this->sec += 60;
             }
-            this->min -= second.min;
-            if (this->min < 0) {
-                this->hours -= 1;
-                this->min += 60;
-            }
-            this->hours -= second.hours;
-            this->hours = abs(this->hours);
         }
         void TimePoint::secadding(long long addsec)
         {
@@ -68,10 +70,10 @@
             }
             this->hours = this->hours % 24;
         }
-        bool TimePoint::compare(TimePoint moment, double* answ) {
+        bool TimePoint::compare(TimePoint moment, double &answ) {
             long long a = this->trans_to_sec();
             long long b = moment.trans_to_sec();
-            *answ = double(a) / double(b);
+            answ = double(a) / double(b);
             return a > b;
         }
         long long TimePoint::trans_to_sec() {
