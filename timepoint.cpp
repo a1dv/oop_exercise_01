@@ -14,19 +14,19 @@
 
         void TimePoint::difference(TimePoint second)
         {
-            this->hours -= second.hours;
-            if (this->hours < 0) {
-                this->hours += 24;
+            this->sec -= second.sec;
+            if (this->sec < 0) {
+                this->min -= 1;
+                this->sec += 60;
             }
             this->min -= second.min;
             if (this->min < 0) {
                 this->hours -=1;
                 this->min += 60;
             }
-            this->sec -= second.sec;
-            if (this->sec < 0) {
-                this->min -= 1;
-                this->sec += 60;
+            this->hours -= second.hours;
+            if (this->hours < 0) {
+                this->hours += 24;
             }
         }
         void TimePoint::secadding(long long addsec)
